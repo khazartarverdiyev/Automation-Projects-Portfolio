@@ -8,7 +8,7 @@ This project simulates an industrial tank level control system built according t
 * **Functional Process Safety:** Automated interlocks for overfill protection and pump dry-run prevention.
 * **Sensor Diagnostics:** Detects signal fault and wire-break conditions (4–20 mA loop monitoring).
 * **Modular Code Design:** Reusable Function Blocks (FBs) and structured data types (DUTs) for scalable architecture.
-* **WebVisu HMI Integration:** Real-time visual monitoring, trend log tracking, and manual alarm reset controls.
+* **WebVisu HMI Integration:** Real-time visual monitoring and manual alarm reset controls.
 
 ## Technical Specifications
 * **Software Environment:** CODESYS V3.5
