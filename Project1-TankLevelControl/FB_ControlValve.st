@@ -23,6 +23,6 @@ END_IF
 //Limit Valve Position
 IF rValvePosition > 100.0 THEN
 	rValvePosition := 100.0;
-ELSIF rValvePosition < 100.0 THEN
-	rValvePosition := 100.0;
+ELSIF rValvePosition < 0.0 THEN
+	rValvePosition := 0.0;
 END_IF
