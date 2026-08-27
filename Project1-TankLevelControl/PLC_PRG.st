@@ -22,6 +22,10 @@ VAR
 	xAlarm_LL: BOOL;
 END_VAR
 
+xAlarm_HH := fbLevelControl.stAlarms.xAlarm_HH;
+xAlarm_LL := fbLevelControl.stAlarms.xAlarm_LL;
+xSensorFault := fbLevelControl.stAlarms.xSensorFault;
+
 ACT_Interlock();
 
 fbLevelControl(
