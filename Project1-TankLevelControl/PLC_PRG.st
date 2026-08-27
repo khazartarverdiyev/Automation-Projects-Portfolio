@@ -1,0 +1,59 @@
+PROGRAM PLC_PRG
+VAR
+	// Function Block Instnces
+	fbLevelControl : FB_LevelControl;
+	fbInletPump : FB_Pump;
+	fbOutletPump : FB_Pump;
+	fbControlValve : FB_ControlValve;
+	
+	//Permissive And SafetyClose
+	xInletPermissive : BOOL; 
+	xOutletPermissive : BOOL;
+	xValveSafetyClose : BOOL;
+	
+	//Inputs
+	rSetPointHmi : REAL;
+	xResetHMI : BOOL;
+	
+	//System Mode
+	xSystemMode : BOOL := TRUE;
+	xAlarm_HH: BOOL;
+	xSensorFault: BOOL;
+	xAlarm_LL: BOOL;
+END_VAR
+
+ACT_Interlock();
+
+fbLevelControl(
+	xAutoMode := xSystemMode,
+	rLevel := GVLInputs.rLevelRaw,
+	rSetPoint := rSetPointHmi,
+	xResetAlarms := xResetHmi
+);
+
+fbInletPump(
+	xAutoMode := xSystemMode,
+	xAutoStartCmd := (fbLevelControl.rPidOutput > 5.0) AND xInletPermissive,
+	xManStartCmd := FALSE,
+	xInterlock := xInletPermissive,
+	xFeedback := GVLInputs.xInletPumpRunFB,
+	xStartCmd => GVLOutputs.xInletPumpStart
+);
+
+fbOutletPump(
+	xAutoMode := xSystemMode,
+	xAutoStartCmd := TRUE,
+	xManStartCmd := FALSE,
+	xInterlock := xOutletPermissive,
+	xFeedback := GVLInputs.xOutletPumpRunFB,
+	xStartCmd => GVLOutputs.xOutletPumpStart
+);
+fbControlValve(
+	xAutoMode := xSystemMode,
+	rAutoValvePosition := fbLevelControl.rPidOutput,
+	rManualValvePosition := 0.0,
+	xSafetyClose := xValveSafetyClose,
+	rValvePosition => GVLOutputs.rValvePosition
+);
+	
+	
