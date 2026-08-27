@@ -28,4 +28,4 @@ This project simulates an industrial tank level control system built according t
 * `ACT_Interlock` (LD): Visual safety permissives and emergency shutdown chain.
 
 ## HMI & Process Visualization
-![HMI Process Overview](hmi_overview.png)
+![HMI Process Overview](hmi-overview.png)
