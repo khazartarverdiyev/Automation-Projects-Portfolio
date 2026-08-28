@@ -52,6 +52,7 @@ fbOutletPump(
 	xManStartCmd := FALSE,
 	xInterlock := xOutletPermissive,
 	xFeedback := GVLInputs.xOutletPumpRunFB,
+	xReset := xResetHMI,
 	xStartCmd => GVLOutputs.xOutletPumpStart
 );
 fbControlValve(
