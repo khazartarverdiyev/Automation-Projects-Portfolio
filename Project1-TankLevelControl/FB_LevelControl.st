@@ -19,7 +19,6 @@ VAR
 END_VAR
 
 
-
 // 1. Reset for one cycle
 fbResetTrigger ( CLK := xResetAlarms, Q => xResetPulse);
 
@@ -38,7 +37,7 @@ ELSIF xResetPulse AND (rLevel < stAlarms.rSetPointAlarm_HH) THEN
 END_IF
 
 // 4. Latched Low-Low Alarm
-IF (rLevel <= stAlarms.rSetPointAlarm_LL) OR stAlarms.xSensorFault THEN
+IF (rLevel <= stAlarms.rSetPointAlarm_LL) THEN
     stAlarms.xAlarm_LL := TRUE;
 ELSIF xResetPulse AND (rLevel > stAlarms.rSetPointAlarm_LL) THEN
     stAlarms.xAlarm_LL := FALSE;
