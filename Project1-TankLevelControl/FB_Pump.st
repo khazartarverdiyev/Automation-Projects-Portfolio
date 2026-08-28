@@ -6,6 +6,7 @@ VAR_INPUT
 	xInterlock : BOOL; //If it is true system is okay, there is no fault
 	xFeedback : BOOL; //Feedback signal from motor
 	tFeedbackDelay : TIME := T#3S; //Allowed time to response
+	xReset : BOOL; //If feedback error is handled so press reset button on hmi
 END_VAR
 VAR_OUTPUT
 	xStartCmd : BOOL; //Start signal is sent to Motor
@@ -18,24 +19,26 @@ VAR
 END_VAR
 
 
-// 1.Mode Selection
-IF xAutoMode THEN
-	xStartCmd := xAutoStartCmd AND xInterlock;
-ELSE
-	xStartCmd := xManStartCmd AND xInterlock;
+// 1. Reset Faults
+IF xReset THEN
+    xFeedbackError := FALSE;
 END_IF
 
-// 2. FeedbackChecking
-tFeedbackCountDown(IN := (xStartCmd AND NOT xFeedback), PT:= tFeedbackDelay);
+// 2. Feedback Checking
+tFeedbackCountDown(IN := (xStartCmd AND NOT xFeedback), PT := tFeedbackDelay);
 
 IF tFeedbackCountDown.Q THEN
-	xFeedbackError := TRUE;
+    xFeedbackError := TRUE;
 END_IF
 
-// 3. Safety 
+// 3. Safety & Mode Selection
 IF xFeedbackError OR NOT xInterlock THEN
-	xStartCmd := FALSE;
+    xStartCmd := FALSE; // Block start command if there is a fault
+ELSIF xAutoMode THEN
+    xStartCmd := xAutoStartCmd;
+ELSE
+    xStartCmd := xManStartCmd;
 END_IF
 
-//Confirmation
+// 4. Status Confirmation
 xRunning := xFeedback;
