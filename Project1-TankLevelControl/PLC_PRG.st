@@ -29,19 +29,20 @@ fbLevelControl(
 	xResetAlarms := xResetHmi
 );
 
+
 xAlarm_HH := fbLevelControl.stAlarms.xAlarm_HH;
 xAlarm_LL := fbLevelControl.stAlarms.xAlarm_LL;
 xSensorFault := fbLevelControl.stAlarms.xSensorFault;
 
 ACT_Interlock();
 
-
 fbInletPump(
 	xAutoMode := xSystemMode,
-	xAutoStartCmd := (fbLevelControl.rPidOutput > 5.0) AND xInletPermissive,
+	xAutoStartCmd := (fbLevelControl.rPidOutput > 5.0),
 	xManStartCmd := FALSE,
 	xInterlock := xInletPermissive,
 	xFeedback := GVLInputs.xInletPumpRunFB,
+	xReset := xResetHMI,
 	xStartCmd => GVLOutputs.xInletPumpStart
 );
 
@@ -60,5 +61,6 @@ fbControlValve(
 	xSafetyClose := xValveSafetyClose,
 	rValvePosition => GVLOutputs.rValvePosition
 );
+	
 	
 	
