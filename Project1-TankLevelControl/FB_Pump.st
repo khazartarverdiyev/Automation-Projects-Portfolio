@@ -22,6 +22,7 @@ END_VAR
 // 1. Reset Faults
 IF xReset THEN
     xFeedbackError := FALSE;
+	tFeedbackCountDown(IN := FALSE); // reset the timer
 END_IF
 
 // 2. Feedback Checking
@@ -42,3 +43,4 @@ END_IF
 
 // 4. Status Confirmation
 xRunning := xFeedback;
+
