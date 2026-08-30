@@ -3,7 +3,7 @@ VAR_INPUT
 	xAutoMode : BOOL; // TRUE = Auto FALSE = MANUAL
 	rLevel : REAL; //Input from GVLInputs
 	rSetPoint : REAL; //Target Level
-	rKp : REAL := 2.0; // Proportianl time in seconds;
+	rKp : REAL := 2.0; // Proportianl gain in seconds;
 	rTn : REAL := 10.0; //Integral time in seconds;
 	rTv : REAL := 0.0;// DerivativeTime in seconds
 	xResetAlarms : BOOL; //Reset after error is removed
