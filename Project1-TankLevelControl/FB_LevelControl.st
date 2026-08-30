@@ -30,7 +30,7 @@ ELSIF xResetPulse AND (rLevel >= 0.0) AND (rLevel <= 100.0) THEN
 END_IF
 
 // 3. Latched High-High Alarm
-IF (rLevel >= stAlarms.rSetPointAlarm_HH) OR stAlarms.xSensorFault THEN
+IF (rLevel >= stAlarms.rSetPointAlarm_HH)  THEN
     stAlarms.xAlarm_HH := TRUE;
 ELSIF xResetPulse AND (rLevel < stAlarms.rSetPointAlarm_HH) THEN
     stAlarms.xAlarm_HH := FALSE;
