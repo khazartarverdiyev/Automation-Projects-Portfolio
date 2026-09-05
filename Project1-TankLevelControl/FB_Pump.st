@@ -25,14 +25,7 @@ IF xReset THEN
 	tFeedbackCountDown(IN := FALSE); // reset the timer
 END_IF
 
-// 2. Feedback Checking
-tFeedbackCountDown(IN := (xStartCmd AND NOT xFeedback), PT := tFeedbackDelay);
-
-IF tFeedbackCountDown.Q THEN
-    xFeedbackError := TRUE;
-END_IF
-
-// 3. Safety & Mode Selection
+// 2. Safety & Mode Selection
 IF xFeedbackError OR NOT xInterlock THEN
     xStartCmd := FALSE; // Block start command if there is a fault
 ELSIF xAutoMode THEN
@@ -41,6 +34,12 @@ ELSE
     xStartCmd := xManStartCmd;
 END_IF
 
+// 3. Feedback Checking
+tFeedbackCountDown(IN := (xStartCmd AND NOT xFeedback), PT := tFeedbackDelay);
+
+IF tFeedbackCountDown.Q THEN
+    xFeedbackError := TRUE;
+END_IF
+
 // 4. Status Confirmation
 xRunning := xFeedback;
-
