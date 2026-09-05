@@ -11,6 +11,10 @@ VAR
 	xOutletPermissive : BOOL;
 	xValveSafetyClose : BOOL;
 	
+	//Manual mode commands
+	xManualInletPumpStartCmd : BOOL;
+	xManualOutletPumpStartCmd : BOOL;
+	xManualValvePosition : REAL;
 	//Inputs
 	rSetPointHmi : REAL;
 	xResetHMI : BOOL;
@@ -39,7 +43,7 @@ ACT_Interlock();
 fbInletPump(
 	xAutoMode := xSystemMode,
 	xAutoStartCmd := (fbLevelControl.rPidOutput > 5.0),
-	xManStartCmd := FALSE,
+	xManStartCmd := xManualInletPumpStartCmd,
 	xInterlock := xInletPermissive,
 	xFeedback := GVLInputs.xInletPumpRunFB,
 	xReset := xResetHMI,
@@ -49,19 +53,19 @@ fbInletPump(
 fbOutletPump(
 	xAutoMode := xSystemMode,
 	xAutoStartCmd := TRUE,
-	xManStartCmd := FALSE,
+	xManStartCmd := xManualOutletPumpStartCmd ,
 	xInterlock := xOutletPermissive,
 	xFeedback := GVLInputs.xOutletPumpRunFB,
-	xReset := xResetHMI,
 	xStartCmd => GVLOutputs.xOutletPumpStart
 );
 fbControlValve(
 	xAutoMode := xSystemMode,
 	rAutoValvePosition := fbLevelControl.rPidOutput,
-	rManualValvePosition := 0.0,
+	rManualValvePosition := xManualValvePosition,
 	xSafetyClose := xValveSafetyClose,
 	rValvePosition => GVLOutputs.rValvePosition
 );
+	
 	
 	
 	
