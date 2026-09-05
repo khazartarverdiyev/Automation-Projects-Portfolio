@@ -2,7 +2,7 @@ FUNCTION_BLOCK FB_ControlValve
 VAR_INPUT
 	xAutoMode : BOOL; // Auto = true, manual = false
 	rAutoValvePosition : REAL; //Auto Valve position by PID
-	rManualValvePosition : REAL; // Manual Valve Position by PID
+	rManualValvePosition : REAL; // Manual Valve Position by human
 	xSafetyClose : BOOL; //IF it is true, force valve to stop
 END_VAR
 VAR_OUTPUT
