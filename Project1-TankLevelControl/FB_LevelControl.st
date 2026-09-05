@@ -50,7 +50,7 @@ stAlarms.xAlarm_L := (rLevel <= stAlarms.rSetPointAlarm_L);
 PID(
 	Actual := rLevel,
 	SET_POINT := rSetPoint,
-	Reset := xResetAlarms,
+	Reset := xResetPulse,
 	KP := rKp,
 	TN := rTn,
 	TV := rTv,
