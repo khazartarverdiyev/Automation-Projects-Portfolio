@@ -30,7 +30,7 @@ fbLevelControl(
 	xAutoMode := xSystemMode,
 	rLevel := GVLInputs.rLevelRaw,
 	rSetPoint := rSetPointHmi,
-	xResetAlarms := xResetHmi
+	xResetAlarms := xResetHMI
 );
 
 
