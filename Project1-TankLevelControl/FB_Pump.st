@@ -5,13 +5,13 @@ VAR_INPUT
 	xManStartCmd : BOOL; //Start signal of manual mode
 	xInterlock : BOOL; //If it is true system is okay, there is no fault
 	xFeedback : BOOL; //Feedback signal from motor
-	tFeedbackDelay : TIME := T#3S; //Allowed time to response
+	tFeedbackDelay : TIME; //Allowed time to response
 	xReset : BOOL; //If feedback error is handled so press reset button on hmi
 END_VAR
 VAR_OUTPUT
 	xStartCmd : BOOL; //Start signal is sent to Motor
 	xRunning : BOOL; // Confirmation of feedback
-	xFeedbackError : BOOL; //if in 3 seconds there is no feedback sensor so there is error
+	xFeedbackError : BOOL; //if in spesific time if there is no feedback signal so there is error
 	
 END_VAR
 VAR
