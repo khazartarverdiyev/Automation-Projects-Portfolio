@@ -16,11 +16,14 @@ VAR_OUTPUT
 END_VAR
 VAR
 	tFeedbackCountDown : TON; //Countdown for feedback signal
+	fbResetTrigger : R_TRIG; //Function Block for Reset
+	xResetPulse : BOOL; // Reset for one cycle
 END_VAR
 
 
 // 1. Reset Faults
-IF xReset THEN
+fbResetTrigger(CLK := xReset, Q=> xResetPulse);
+IF xResetPulse THEN
     xFeedbackError := FALSE;
 END_IF
 
