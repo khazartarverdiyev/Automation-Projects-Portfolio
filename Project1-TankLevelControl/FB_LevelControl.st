@@ -11,11 +11,11 @@ END_VAR
 VAR_OUTPUT
 	rPidOutput : REAL;
 	stAlarms : DUT_Alarms;
-	xResetPulse : BOOL;
 END_VAR
 VAR
 	PID : UTIL.PID;
 	fbResetTrigger : R_TRIG; //Function block for reset
+	xResetPulse : BOOL;
 END_VAR
 
 
