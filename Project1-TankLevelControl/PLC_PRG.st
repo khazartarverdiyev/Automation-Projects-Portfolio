@@ -21,6 +21,8 @@ VAR
 	
 	//System Mode
 	xSystemMode : BOOL := TRUE;
+
+	//Alarms
 	xAlarm_HH: BOOL;
 	xSensorFault: BOOL;
 	xAlarm_LL: BOOL;
