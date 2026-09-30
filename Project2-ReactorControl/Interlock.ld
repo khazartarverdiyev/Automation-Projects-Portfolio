@@ -17,3 +17,4 @@ END_VAR
 
 
 
+![Reactor Interlock Logic](./reactorinterlock-ld.png)
