@@ -29,4 +29,4 @@ This project simulates an industrial chemical reactor batch process built accord
 * `Recipe_Data` (STRUCT): Reusable data structure holding target levels, temperatures, and mixing durations.
 
 ## HMI & Process Visualization
-![HMI Process Overview](screenshots/hmi-overview.png)
+![HMI Process Overview](Reactor_HMI.png)
