@@ -15,4 +15,4 @@ END_VAR
 VAR CONSTANT
 END_VAR
 
-![Reactor Interlock Logic](./reactorinterlock-ld.png)
+// Ladder logic diagram with name reactorinterlock-ld.png
