@@ -28,5 +28,5 @@ This project simulates an industrial chemical reactor batch process built accord
 * `PLC_PRG` (ST): Core sequential batch state machine (`CASE` framework) with step timeout monitoring (`StepTimer`).
 * `Recipe_Data` (STRUCT): Reusable data structure holding target levels, temperatures, and mixing durations.
 
-## HMI & Process Visualization
+## HMI & Process Visualization(Sensor values are entered manually / forced to demonstrate the HMI)
 ![HMI Process Overview](Reactor_HMI.png)
