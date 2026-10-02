@@ -29,7 +29,7 @@ The system runs a full batch sequence: fill the tank, add a chemical, mix, heat 
 ## Process Description (P&ID-101)
 | Tag | Equipment | Function |
 | :--- | :--- | :--- |
-| TK-101 | Base liquid tank | Supplies the base liquid |
+| TK-101 | Reactor Vessel | Supplies the base liquid |
 | V-101 (Valve A) | Inlet valve | Fills the reactor with base liquid |
 | V-102 (Valve B) | Inlet valve | Adds the chemical |
 | M-101 | Mixer motor | Mixes the liquids |
@@ -49,7 +49,7 @@ The system runs a full batch sequence: fill the tank, add a chemical, mix, heat 
 | 3 | Mix | Mixer ON | Mix time is finished (5 s) |
 | 4 | Heat | Heater ON | Temperature ≥ `TargetTemp` (80 °C) |
 | 5 | Drain | Drain valve open | Level < 0.5 %, then back to State 0 |
-| 99 | Fault | All actuators are OFF | No fault and operator Reset |
+| 99 | Fault |Process actuators are turned OFF and the vent valve opens to release pressure | No fault and operator Reset |
 
 **Step timeout:** In States 1, 2, 4 and 5, a 10-second timer (`StepTimer`) runs. If the step is not finished in 10 seconds, `StepFault` becomes TRUE and the system goes to State 99.
 
