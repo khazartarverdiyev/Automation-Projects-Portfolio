@@ -14,6 +14,7 @@ VAR
 	StepTimerPT : TIME := T#10S; //Time of Counter
 	StepFault : BOOL; //there will be fault if it take too long than needed to complete each step
 	LevelThreshold : REAL := 0.5; //If level less than this drain valve must be closed
+	MinLevelLimit : REAL := 10.0; ////Minimum level to run mixer and heater
 	
 	StartEdge : R_TRIG; //It prevent auto-restart
 	ResetEdge : R_TRIG; //Reset FOR one cycle
@@ -75,13 +76,18 @@ CASE CurrentState OF
 		END_IF
 	
 	3 : //Mix ingredients
-		MixerOn := TRUE;
-		MixerTimer(IN := TRUE, PT := Active_Recipe.MixTime);
-		IF MixerTimer.Q THEN
-			MixerOn := FALSE;
-			MixerTimer(IN := FALSE);
-			CurrentState := 4;
-		END_IF
+    	IF GVL_Variables.CurrentLevel < MinLevelLimit THEN
+        	StepFault := TRUE;
+        	CurrentState := 99;
+   	 	ELSE
+        	MixerOn := TRUE;
+       		MixerTimer(IN := TRUE, PT := Active_Recipe.MixTime);
+        	IF MixerTimer.Q THEN
+            	MixerOn := FALSE;
+            	MixerTimer(IN := FALSE);
+            	CurrentState := 4;
+        	END_IF
+    END_IF
 		
 	4: //Heater
 		HeaterOn := TRUE;
