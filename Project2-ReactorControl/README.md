@@ -83,7 +83,7 @@ The system runs a full batch sequence: fill the tank, add a chemical, mix, heat 
 `PLC_PRG` calls `Interlock` in every scan cycle, before the state machine. Because of this, the safety logic always has priority over the sequence.
 
 ## HMI and Process Visualization
-Sensor values are entered manually (forced) to demonstrate the HMI.
+The values shown in this screenshot were manually forced in CODESYS for HMI testing and do not represent a normal process sequence.
 
 
 
