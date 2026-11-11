@@ -43,11 +43,18 @@ The controller includes a 2-second All-Red clearance interval between traffic ph
 
 ## Pedestrian Control
 
+## Pedestrian Control
+
 The pedestrian button uses an R_TRIG function block to detect a button press. The request is stored in a latched BOOL variable called `PedestrianRequest`.
 
 After the normal traffic-light sequence completes one cycle, the controller checks for a pending request. If a request exists, pedestrian crossing starts for 10 seconds.
 
-During pedestrian crossing, all vehicle green signals are turned OFF. After the crossing period finishes, the pedestrian request and crossing state are reset, and normal traffic operation resumes.
+During pedestrian crossing:
+- NS Red and EW Red signals remain ON.
+- All vehicle green and yellow signals remain OFF.
+- The pedestrian crossing state remains active for 10 seconds.
+
+After the crossing period finishes, the pedestrian request and crossing state are reset. The red signals are turned OFF, and normal traffic operation resumes with NS Green.
 
 New pedestrian requests during an active crossing are ignored by the current control logic.
 
