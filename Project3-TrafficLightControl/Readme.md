@@ -102,7 +102,7 @@ The complete Ladder Diagram implementation is available in the following PDF:
 
 The following video demonstrates the traffic-light controller operating through the CODESYS WebVisu HMI.
 
-[Watch HMI Demonstration](videos/traffic-light-demo.mp4)
+[Watch HMI Demonstration](Traffic-light-simulation.mp4)
 
 ## Limitations
 
