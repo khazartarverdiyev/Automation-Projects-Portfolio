@@ -41,7 +41,6 @@ The system follows this automatic sequence:
 
 The controller includes a 2-second All-Red clearance interval between traffic phases. This provides time for vehicles to clear the intersection before traffic starts moving in the other direction.
 
-## Pedestrian Control
 
 ## Pedestrian Control
 
